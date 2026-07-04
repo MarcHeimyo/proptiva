@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>Datenschutzerklärung — Proptiva by Heimyo</title>
+  <meta name="description" content="Datenschutzerklärung von Proptiva / Heimyo Holding AG. Informationen zur Verarbeitung personenbezogener Daten nach DSG (CH), DSGVO (EU) und BDSG (DE)." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=6" />
+  <style>
+    /* Rechtsseite: heller Nav-Zustand permanent erzwingen (kein dunkler Hero dahinter) */
+    .nav { background: rgba(255,255,255,0.9); backdrop-filter: blur(18px) saturate(150%); border-bottom-color: var(--border); }
+    .nav .brand { color: var(--ink); }
+    .nav .brand small { color: var(--ink-3); }
+    .nav-links a { color: var(--ink-2); text-shadow: none; }
+    .nav-links a:hover { color: var(--gold-ink); }
+    .lang-toggle { border-color: var(--border-2); }
+    .lang-toggle button { color: var(--ink-3); }
+    .lang-toggle button.active { color: var(--gold-ink); }
+    .nav-burger span { background: var(--ink); }
+
+    .legal { padding: 140px 0 96px; }
+    .legal .wrap { max-width: 820px; }
+    .legal .kicker { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-ink); }
+    .legal h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.1rem, 4vw, 3rem); letter-spacing: -0.02em; line-height: 1.08; margin: 12px 0 10px; }
+    .legal .lead { color: var(--ink-2); font-size: 1.02rem; margin-bottom: 8px; }
+    .legal .updated { color: var(--ink-3); font-size: 0.86rem; }
+    .legal .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 32px clamp(22px, 4vw, 44px); margin-top: 34px; }
+    .legal h2 { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; margin: 30px 0 8px; }
+    .legal h2:first-of-type { margin-top: 0; }
+    .legal p, .legal address, .legal li { color: var(--ink-2); font-size: 0.98rem; font-style: normal; }
+    .legal address { line-height: 1.7; margin: 0 0 6px; }
+    .legal p { margin: 0 0 6px; }
+    .legal ul { margin: 4px 0 10px; padding-left: 20px; }
+    .legal li { margin: 3px 0; }
+    .legal a.inline { color: var(--gold-ink); font-weight: 500; }
+    .legal a.inline:hover { text-decoration: underline; }
+    .legal .divider { height: 1px; background: var(--border); margin: 26px 0; border: 0; }
+    .legal .back { display: inline-flex; align-items: center; gap: 8px; margin-top: 30px; color: var(--ink-2); font-weight: 500; font-size: 0.92rem; }
+    .legal .back:hover { color: var(--gold-ink); }
+    .legal .fineprint { color: var(--ink-3); font-size: 0.85rem; margin-top: 22px; line-height: 1.65; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav scrolled" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="index.html">
+        <span class="mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/><rect x="17.5" y="20.5" width="4.2" height="4.2" rx="0.8" fill="#1a1400" opacity="0.45"/></svg></span>
+        <span>Proptiva<small data-i18n="brand.sub">by Heimyo · Zürich</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#system" data-i18n="nav.system">System</a>
+        <a href="index.html#capabilities" data-i18n="nav.capabilities">Leistungen</a>
+        <a href="index.html#platform" data-i18n="nav.platform">Portfolio-Manager</a>
+        <a href="index.html#onboarding" data-i18n="nav.onboarding">Ablauf</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Kontakt</a>
+      </div>
+      <div class="nav-right">
+        <div class="lang-toggle" id="langToggle">
+          <button data-lang="de" class="active">DE</button>
+          <button data-lang="en">EN</button>
+        </div>
+        <a href="portfolio-demo.html" class="btn btn-primary" data-i18n="nav.cta">Live-Demo</a>
+        <button class="nav-burger" id="burger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#system" data-i18n="nav.system">System</a>
+    <a href="index.html#capabilities" data-i18n="nav.capabilities">Leistungen</a>
+    <a href="index.html#platform" data-i18n="nav.platform">Portfolio-Manager</a>
+    <a href="index.html#onboarding" data-i18n="nav.onboarding">Ablauf</a>
+    <a href="index.html#contact" data-i18n="nav.contact">Kontakt</a>
+    <a href="portfolio-demo.html" data-i18n="nav.cta">Live-Demo →</a>
+  </div>
+
+  <!-- ===== DATENSCHUTZ ===== -->
+  <main class="legal">
+    <div class="wrap">
+      <span class="kicker" data-i18n="legal.ds.kicker">Rechtliches</span>
+      <h1 data-i18n="legal.ds.title">Datenschutzerklärung</h1>
+      <p class="lead" data-i18n="legal.ds.lead">Wie die Heimyo Holding AG personenbezogene Daten verarbeitet — für Proptiva und die weiteren Angebote von Heimyo.</p>
+      <p class="updated" data-i18n="legal.ds.updated">Stand: 1. Oktober 2025</p>
+
+      <div class="card">
+        <h2>1. Verantwortliche Stelle</h2>
+        <address>
+          <strong>Heimyo Holding AG</strong><br />
+          Feldeggstrasse 24/26<br />
+          8008 Zürich<br />
+          Schweiz
+        </address>
+        <p style="margin-top:8px">E-Mail: <a class="inline" href="mailto:info@heimyo.com">info@heimyo.com</a></p>
+        <p data-i18n="legal.ds.s1.contact">Für Fragen zum Datenschutz wenden Sie sich bitte an: <a class="inline" href="mailto:info@heimyo.com">info@heimyo.com</a></p>
+
+        <hr class="divider" />
+
+        <h2>2. Anwendbares Recht</h2>
+        <p data-i18n="legal.ds.s2.p">Diese Datenschutzerklärung erfüllt die Anforderungen der:</p>
+        <ul>
+          <li>Datenschutz-Grundverordnung (DSGVO) der EU</li>
+          <li>Bundesdatenschutzgesetz (BDSG) (Deutschland)</li>
+          <li>Datenschutzgesetz (DSG) (Schweiz)</li>
+        </ul>
+        <p data-i18n="legal.ds.s2.note">Da wir sowohl in der Schweiz als auch in Deutschland tätig sind, beachten wir alle jeweils geltenden Datenschutzbestimmungen.</p>
+
+        <hr class="divider" />
+
+        <h2>3. Erhebung und Verarbeitung personenbezogener Daten</h2>
+        <p data-i18n="legal.ds.s3.p">Wir erheben personenbezogene Daten nur, wenn dies gesetzlich erlaubt ist oder Sie eingewilligt haben. Dies umfasst insbesondere:</p>
+        <ul>
+          <li>Name, Vorname</li>
+          <li>E-Mail-Adresse, Telefonnummer</li>
+          <li>Postadresse</li>
+          <li>Bewerbungsunterlagen (z.&nbsp;B. Lebenslauf)</li>
+          <li>Vertrags- und Abrechnungsdaten</li>
+          <li>IP-Adresse und Nutzungsdaten bei Webseitenbesuch</li>
+        </ul>
+
+        <hr class="divider" />
+
+        <h2>4. Zwecke der Datenverarbeitung</h2>
+        <p data-i18n="legal.ds.s4.p">Wir verarbeiten Ihre Daten zu folgenden Zwecken:</p>
+        <ul>
+          <li>Bearbeitung von Anfragen und Kommunikation</li>
+          <li>Anbahnung, Abschluss und Durchführung von Verträgen</li>
+          <li>Bewerbungsverfahren</li>
+          <li>Pflege von Kunden- und Lieferantenbeziehungen</li>
+          <li>Verbesserung unserer Dienstleistungen und Webseite</li>
+          <li>Erfüllung gesetzlicher Verpflichtungen</li>
+        </ul>
+
+        <hr class="divider" />
+
+        <h2>5. Rechtsgrundlagen der Verarbeitung</h2>
+        <ul>
+          <li>Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO)</li>
+          <li>Vertragserfüllung oder vorvertragliche Massnahmen (Art. 6 Abs. 1 lit. b DSGVO)</li>
+          <li>Rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO)</li>
+          <li>Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO)</li>
+        </ul>
+        <p data-i18n="legal.ds.s5.note">Für Datenverarbeitungen nach Schweizer DSG stützen wir uns auf die Grundsätze der Verhältnismässigkeit, Zweckbindung und Datensicherheit.</p>
+
+        <hr class="divider" />
+
+        <h2>6. Weitergabe an Dritte</h2>
+        <p data-i18n="legal.ds.s6.p1">Ihre Daten werden nur an Dritte weitergegeben, wenn dies zur Vertragserfüllung notwendig ist, eine gesetzliche Verpflichtung besteht oder Sie eingewilligt haben.</p>
+        <p data-i18n="legal.ds.s6.p2">Mögliche Empfänger: IT-Dienstleister, Buchhaltungs- und HR-Dienstleister, Behörden.</p>
+
+        <hr class="divider" />
+
+        <h2>7. Datenübermittlung ins Ausland</h2>
+        <p data-i18n="legal.ds.s7.p1">Wir speichern Daten primär in der Schweiz und der EU.</p>
+        <p data-i18n="legal.ds.s7.p2">Falls Daten in Länder ohne angemessenes Datenschutzniveau übermittelt werden, stellen wir den Schutz durch geeignete Garantien sicher (z.&nbsp;B. Standardvertragsklauseln (SCC) der EU).</p>
+
+        <hr class="divider" />
+
+        <h2>8. Speicherdauer</h2>
+        <p data-i18n="legal.ds.s8.p">Wir speichern personenbezogene Daten nur so lange, wie es für die Erfüllung der jeweiligen Zwecke notwendig ist oder gesetzliche Aufbewahrungsfristen bestehen.</p>
+
+        <hr class="divider" />
+
+        <h2>9. Ihre Rechte</h2>
+        <p data-i18n="legal.ds.s9.p">Sie haben jederzeit das Recht auf:</p>
+        <ul>
+          <li>Auskunft über Ihre gespeicherten Daten</li>
+          <li>Berichtigung unrichtiger Daten</li>
+          <li>Löschung Ihrer Daten („Recht auf Vergessenwerden")</li>
+          <li>Einschränkung der Verarbeitung</li>
+          <li>Widerspruch gegen die Verarbeitung</li>
+          <li>Datenübertragbarkeit</li>
+        </ul>
+        <p data-i18n="legal.ds.s9.ch">In der Schweiz können Sie zudem beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) Beschwerde einreichen.</p>
+        <p data-i18n="legal.ds.s9.de">In Deutschland ist die zuständige Aufsichtsbehörde die Datenschutzbehörde des jeweiligen Bundeslandes.</p>
+
+        <hr class="divider" />
+
+        <h2>10. Datensicherheit</h2>
+        <p data-i18n="legal.ds.s10.p">Wir setzen technische und organisatorische Sicherheitsmassnahmen ein, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder unbefugten Zugriff zu schützen. Unsere Sicherheitsmassnahmen werden regelmässig überprüft und dem technologischen Fortschritt angepasst.</p>
+
+        <hr class="divider" />
+
+        <h2>11. Cookies und Tracking</h2>
+        <p data-i18n="legal.ds.s11.p1">Unsere Website verwendet Cookies und ähnliche Technologien, um die Nutzung zu analysieren und zu verbessern.</p>
+        <p data-i18n="legal.ds.s11.p2">Sie können der Nutzung widersprechen oder Ihre Einwilligung jederzeit über unser Cookie-Banner widerrufen.</p>
+
+        <hr class="divider" />
+
+        <h2>12. Änderungen dieser Datenschutzerklärung</h2>
+        <p data-i18n="legal.ds.s12.p">Wir behalten uns vor, diese Datenschutzerklärung jederzeit anzupassen. Es gilt die jeweils auf unserer Website veröffentlichte aktuelle Version.</p>
+
+        <p class="fineprint" data-i18n="legal.ds.source">Übernommen aus der Datenschutzerklärung der Heimyo Holding AG (www.heimyo.com). © 2025 Heimyo Holding AG.</p>
+      </div>
+
+      <a class="back" href="index.html">&larr; <span data-i18n="legal.back">Zurück zur Startseite</span></a>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER (dark) ===== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/><rect x="17.5" y="20.5" width="4.2" height="4.2" rx="0.8" fill="#1a1400" opacity="0.45"/></svg></span><span>Proptiva<small data-i18n="brand.sub">by Heimyo · Zürich</small></span></a>
+          <p data-i18n="foot.about">Digitales Immobilien-Portfoliomanagement für Schweizer Pensionskassen und institutionelle Investoren. Ein Angebot der Heimyo Holding AG.</p>
+        </div>
+        <div>
+          <h5 data-i18n="foot.product">Plattform</h5>
+          <a href="portfolio-demo.html" data-i18n="foot.demo">Portfolio-Manager Demo</a>
+          <a href="index.html#capabilities" data-i18n="nav.capabilities">Leistungen</a>
+          <a href="index.html#system" data-i18n="nav.system">System</a>
+        </div>
+        <div>
+          <h5 data-i18n="foot.company">Unternehmen</h5>
+          <a href="index.html#onboarding" data-i18n="nav.onboarding">Ablauf</a>
+          <a href="index.html#platform" data-i18n="nav.platform">Portfolio-Manager</a>
+          <a href="impressum.html" data-i18n="foot.imprint">Impressum</a>
+          <a href="datenschutz.html" data-i18n="foot.privacy">Datenschutzerklärung</a>
+        </div>
+        <div>
+          <h5 data-i18n="foot.contact">Kontakt</h5>
+          <a href="index.html#contact" data-i18n="cta.eyebrow">Demo anfragen</a>
+          <a href="mailto:info@heimyo.com">info@heimyo.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Heimyo Holding AG · Proptiva · Zürich</span>
+        <span><a href="impressum.html" data-i18n="foot.imprint">Impressum</a> · <a href="datenschutz.html" data-i18n="foot.privacy">Datenschutzerklärung</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=5"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# Lokale Editor-/Tooling-Konfiguration
+.claude/
+.vscode/
+.idea/
+
+# Betriebssystem-Artefakte
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Abhängigkeiten / Build (aktuell nicht genutzt – reine statische Site)
+node_modules/
+*.log

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>Proptiva · Portfolio-Manager (Demo)</title>
+  <meta name="description" content="Interaktive Demo des Proptiva Portfolio-Managers: Live-Kennzahlen, Objektstatus, Begehungs-Videos und Szenario-Rechner." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="side">
+      <a class="brand" href="index.html"><span class="mark">P</span><span>Proptiva<small>by Heimyo</small></span></a>
+      <a class="side-link active" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg><span data-t="nav.overview">Übersicht</span></a>
+      <a class="side-link" href="#objects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg><span data-t="nav.objects">Objekte</span></a>
+      <a class="side-link" href="#calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg><span data-t="nav.calc">Szenario-Rechner</span></a>
+      <a class="side-link" href="#map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 1114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-t="nav.map">Karte</span></a>
+      <a class="side-link" href="#assistant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a9 9 0 00-9 9 9 9 0 004 7.5V22l3.5-2A9 9 0 1012 3z"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/></svg><span data-t="nav.assistant">Ask Proptiva</span></a>
+      <div class="side-label" data-t="nav.governance">Governance</div>
+      <a class="side-link" href="#esg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 019 6c4-1 8 1 10-3 1 6-1 13-8 15z"/><path d="M8 18c1-4 4-7 8-9"/></svg><span data-t="nav.esg">ESG & CO₂-Pfad</span></a>
+      <a class="side-link" href="#lease"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg><span data-t="nav.lease">Mietverträge</span></a>
+      <a class="side-link" href="#todo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><span data-t="nav.todo">Handlungsbedarf</span></a>
+      <div class="side-label" data-t="nav.reports">Reporting</div>
+      <a class="side-link" href="#docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg><span data-t="nav.docs">Dokumente</span></a>
+      <a class="side-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span data-t="nav.activity">Aktivität</span></a>
+      <div class="side-foot">
+        <a href="index.html">← <span data-t="nav.back">Zurück zur Website</span></a>
+      </div>
+    </aside>
+    <div class="side-overlay" id="sideOverlay"></div>
+
+    <!-- ===== MAIN ===== -->
+    <div class="main">
+      <div class="demo-banner">
+        <span data-t="banner">Interaktive Demo mit Beispieldaten · </span><a href="index.html#contact" data-t="banner.cta">Persönliche Demo anfragen →</a>
+      </div>
+      <div class="topbar">
+        <div style="display:flex;align-items:center;gap:12px">
+          <button class="dash-burger" id="dashBurger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+          <div>
+            <h1 data-t="top.title">Portfolio-Übersicht</h1>
+            <div class="sub" data-t="top.sub">Stand: live · zuletzt aktualisiert vor wenigen Sekunden</div>
+          </div>
+        </div>
+        <div class="top-right">
+          <select class="pf-select" id="pfSelect">
+            <option data-t="pf.1">Gesamtportfolio</option>
+            <option data-t="pf.2">Wohnen Schweiz</option>
+            <option data-t="pf.3">Gewerbe & Büro</option>
+          </select>
+          <span class="live-ind"><span class="dot"></span>LIVE</span>
+          <div class="lang-toggle" id="langToggle">
+            <button data-lang="de" class="active">DE</button>
+            <button data-lang="en">EN</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+
+        <!-- KPI ROW -->
+        <div class="kpi-row">
+          <div class="kpi"><div class="k" data-t="kpi.value">Portfoliowert</div><div class="v" id="kpiValue">CHF 1.41 Mrd</div><div class="d pos">▲ +2.3% <span data-t="ytd">YTD</span></div></div>
+          <div class="kpi"><div class="k" data-t="kpi.yield">Netto-Rendite</div><div class="v" id="kpiYield">3.8%</div><div class="d pos">▲ +0.2 pp</div></div>
+          <div class="kpi"><div class="k" data-t="kpi.occ">Vermietungsquote</div><div class="v" id="kpiOcc">97.4%</div><div class="d pos">▲ +0.6 pp</div></div>
+          <div class="kpi"><div class="k" data-t="kpi.cf">Netto-Cashflow YTD</div><div class="v" id="kpiCf">CHF 41.2 Mio</div><div class="d pos">▲ +4.1%</div></div>
+        </div>
+
+        <!-- ASK PROPTIVA — assistant -->
+        <div class="assistant" id="assistant">
+          <div class="assistant-head">
+            <div class="assistant-avatar">P</div>
+            <div>
+              <div class="at" data-t="ai.title">Ask Proptiva</div>
+              <div class="as" data-t="ai.sub">Fragen Sie Ihr Portfolio in natürlicher Sprache</div>
+            </div>
+            <span class="assistant-demo-tag" data-t="ai.demo">Demo · simuliert</span>
+          </div>
+          <div class="assistant-body">
+            <div class="chips" id="aiChips"></div>
+            <form class="ask-form" id="askForm" autocomplete="off">
+              <input class="ask-input" id="askInput" type="text" data-t-ph="ai.ph" placeholder="Frage stellen — z. B. Auswertung Leerstand im letzten Jahr" aria-label="Frage" />
+              <button class="ask-send" type="submit" data-t="ai.send">Fragen</button>
+            </form>
+            <div id="aiAnswer"></div>
+          </div>
+        </div>
+
+        <!-- CHART + DONUT -->
+        <div class="panels">
+          <div class="panel">
+            <div class="panel-head">
+              <h3 data-t="chart.title">Portfoliowert-Entwicklung</h3>
+              <div class="range-toggle" id="rangeToggle">
+                <button data-range="3">3M</button>
+                <button data-range="6">6M</button>
+                <button data-range="12" class="active">12M</button>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <svg class="chart-svg" id="valueChart" viewBox="0 0 640 230" preserveAspectRatio="none"></svg>
+              <div class="chart-tip" id="chartTip"></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3 data-t="alloc.title">Allokation nach Nutzung</h3></div>
+            <div class="donut-wrap">
+              <div class="donut" style="width:150px;height:150px">
+                <svg width="150" height="150" viewBox="0 0 150 150" id="donut"></svg>
+                <div class="center"><div><div class="big">218</div><div class="small" data-t="alloc.objs">Objekte</div></div></div>
+              </div>
+              <div class="legend" id="donutLegend"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OBJECTS TABLE -->
+        <div class="panel" id="objects" style="margin-bottom:22px">
+          <div class="panel-head">
+            <h3 data-t="obj.title">Objekte · Status & letzte Begehung</h3>
+            <span class="hint" data-t="obj.hint">Klicken Sie auf ein Video, um die Begehung zu öffnen</span>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="obj-table">
+              <thead>
+                <tr>
+                  <th data-t="obj.h1">Objekt</th>
+                  <th data-t="obj.h2">Standort</th>
+                  <th class="num" data-t="obj.h3">Wert</th>
+                  <th class="num" data-t="obj.h4">Vermietung</th>
+                  <th class="num" data-t="obj.h5">Rendite</th>
+                  <th data-t="obj.h6">Status</th>
+                  <th data-t="obj.h7">Begehung</th>
+                </tr>
+              </thead>
+              <tbody id="objBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SCENARIO CALCULATOR -->
+        <div class="panel" id="calc" style="margin-bottom:22px">
+          <div class="panel-head">
+            <h3 data-t="calc.title">Szenario-Rechner — rechnen Sie selbst</h3>
+            <span class="hint" data-t="calc.hint">Bewegen Sie die Regler und sehen Sie die Wirkung sofort</span>
+          </div>
+          <div class="calc-grid">
+            <div>
+              <div class="slider-field">
+                <div class="lab"><span data-t="calc.rent">Mietzinsentwicklung p.a.</span><span class="cur" id="rentVal">+1.5%</span></div>
+                <input type="range" id="rent" min="-2" max="5" step="0.1" value="1.5" />
+              </div>
+              <div class="slider-field">
+                <div class="lab"><span data-t="calc.vac">Leerstandsquote</span><span class="cur" id="vacVal">2.6%</span></div>
+                <input type="range" id="vac" min="0" max="12" step="0.1" value="2.6" />
+              </div>
+              <div class="slider-field">
+                <div class="lab"><span data-t="calc.capex">CAPEX-Quote p.a.</span><span class="cur" id="capexVal">0.8%</span></div>
+                <input type="range" id="capex" min="0" max="4" step="0.1" value="0.8" />
+              </div>
+              <div class="slider-field">
+                <div class="lab"><span data-t="calc.rate">Kapitalisierungssatz</span><span class="cur" id="rateVal">3.8%</span></div>
+                <input type="range" id="rate" min="2.5" max="6" step="0.1" value="3.8" />
+              </div>
+            </div>
+            <div class="calc-result">
+              <div class="calc-out">
+                <div class="k" data-t="calc.o1">Projizierter Portfoliowert (5 Jahre)</div>
+                <div class="v" id="outValue">CHF 1.51 Mrd</div>
+                <div class="delta pos" id="outValueD">▲ +6.9% ggü. heute</div>
+              </div>
+              <div class="calc-out">
+                <div class="k" data-t="calc.o2">Erwartete Netto-Rendite (auf heutigen Wert)</div>
+                <div class="v" id="outYield">4.1%</div>
+              </div>
+              <div class="calc-out">
+                <div class="k" data-t="calc.o3">Netto-Mietertrag p.a. (NOI)</div>
+                <div class="v" id="outCf">CHF 57.4 Mio</div>
+              </div>
+              <p class="calc-note" data-t="calc.note">Vereinfachtes Modell zu Demonstrationszwecken. Im Live-Produkt rechnet Proptiva auf Basis Ihrer echten Objekt- und Vertragsdaten.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- HANDLUNGSBEDARF + REPORTING EXPORT -->
+        <div class="widget-grid">
+          <div class="panel" id="todo">
+            <div class="panel-head"><h3 data-t="todo.title">Handlungsbedarf</h3><span class="hint" data-t="todo.hint">Priorisiert nach Dringlichkeit</span></div>
+            <div class="todo-list" id="todoList"></div>
+          </div>
+          <div class="panel" id="docs">
+            <div class="panel-head"><h3 data-t="exp.title">Reporting & Dokumente</h3><span class="hint" data-t="exp.hint">Stiftungsratsfähig</span></div>
+            <div class="export-row" id="exportRow"></div>
+            <p class="export-note" data-t="exp.note">Demo: Exporte sind simuliert. Im Live-Produkt generiert Proptiva prüffähige Berichte aus Ihren echten Daten.</p>
+          </div>
+        </div>
+
+        <!-- ESG / CO2-ABSENKPFAD + LEASE/WAULT -->
+        <div class="panels even">
+          <div class="panel" id="esg">
+            <div class="panel-head"><h3 data-t="esg.title">CO₂-Absenkpfad — Netto-Null 2050</h3><span class="hint">AMAS · THG-Intensität</span></div>
+            <div class="esg-stats" id="esgStats"></div>
+            <div class="chart-wrap"><svg class="chart-svg" id="esgChart" viewBox="0 0 640 210" preserveAspectRatio="none" style="height:200px"></svg></div>
+          </div>
+          <div class="panel" id="lease">
+            <div class="panel-head"><h3 data-t="lease.title">Mietvertrags-Restlaufzeit (WAULT)</h3><span class="hint" id="waultHint"></span></div>
+            <div class="lease-list" id="leaseList"></div>
+          </div>
+        </div>
+
+        <!-- TER + VACANCY TREND -->
+        <div class="panels even">
+          <div class="panel" id="ter">
+            <div class="panel-head"><h3 data-t="ter.title">Kostentransparenz (TER<sub>ISA</sub>)</h3><span class="hint" data-t="ter.hint">Gesamtkostenquote p.a.</span></div>
+            <div class="ter-grid" id="terGrid"></div>
+          </div>
+          <div class="panel" id="vactrend">
+            <div class="panel-head"><h3 data-t="vacw.title">Leerstandsentwicklung 12 Monate</h3><span class="hint">%</span></div>
+            <div class="chart-wrap"><svg class="chart-svg" id="vacChart" viewBox="0 0 640 200" preserveAspectRatio="none" style="height:190px"></svg></div>
+          </div>
+        </div>
+
+        <!-- CASHFLOW + MAP -->
+        <div class="panels">
+          <div class="panel">
+            <div class="panel-head"><h3 data-t="cf.title">Netto-Cashflow je Quartal</h3><span class="hint">CHF Mio</span></div>
+            <div class="bars" id="cfBars"></div>
+          </div>
+          <div class="panel" id="map">
+            <div class="panel-head"><h3 data-t="map.title">Objekte in der Schweiz</h3></div>
+            <div class="map-wrap" id="mapWrap"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VIDEO MODAL ===== -->
+  <div class="modal-back" id="videoModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle">Begehung</h3>
+        <button class="modal-close" id="modalClose" aria-label="Schliessen">✕</button>
+      </div>
+      <div class="modal-video" id="modalVideo">
+        <div class="scene"></div>
+        <div class="scanline"></div>
+        <span class="modal-rec"><span class="dot"></span>REC · Demo</span>
+        <button class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+      </div>
+      <div class="modal-body" id="modalBody" data-t="modal.body">
+        Demo: Im Live-Produkt läuft hier der Begehungs-Rundgang der Liegenschaft — Fassade, Technik und dokumentierte Mängel, mit Zeitstempel und Verlauf.
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
