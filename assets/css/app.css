@@ -301,8 +301,8 @@ body.has-cursor .chip{cursor:none}
 
 .partner{display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px;border:1px solid var(--line);border-radius:14px;background:var(--glass);transition:.3s}
 .partner:hover{border-color:var(--line-2);transform:translateY(-3px)}
-.partner-logo{height:40px;display:grid;place-items:center}
-.partner-logo img{max-height:40px;max-width:150px;filter:brightness(0) invert(1);opacity:.8}
+.partner-logo{height:42px;display:flex;align-items:center;justify-content:center}
+.partner-logo img{height:38px;width:auto;max-width:170px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}
 .partner-wordmark{font-family:var(--serif);font-size:1.3rem;color:var(--ink)}
 .partner-wordmark em{color:var(--ink-3);font-style:normal;font-size:.9rem}
 
