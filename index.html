@@ -1,551 +1,391 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="js pre">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <title>Proptiva — Institutionelles Immobilien-Portfoliomanagement aus Zürich</title>
-  <meta name="description" content="Proptiva von Heimyo: digitales Immobilien-Portfoliomanagement für Schweizer Pensionskassen und institutionelle Investoren. Live-Cockpit für Stiftungsrat und Anlagekommission, Self-Service-Szenarien, Vor-Ort-Videos und TER-/AMAS-/SSREI-anschlussfähiges Reporting. Aus Zürich, für die Schweiz." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<title>Proptiva — Institutionelles Immobilien-Portfoliomanagement aus Zürich</title>
+<meta name="description" content="Proptiva von Heimyo: digitales Immobilien-Portfoliomanagement für Schweizer Pensionskassen, Anlagestiftungen, Immobilienfonds und Family Offices. Live-Cockpit für Gremien, Vor-Ort-Videos bei jeder Begehung, TER-/AMAS-/SSREI-anschlussfähiges Reporting. Aus Zürich, für die Schweiz." />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Proptiva — Institutionelles Immobilien-Portfoliomanagement" />
+<meta property="og:description" content="Live-Cockpit für Gremien, Vor-Ort-Video bei jeder Begehung, TER-/AMAS-/SSREI-Reporting. Aus Zürich, für die Schweiz." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/app.css?v=1" />
 </head>
 <body>
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+<div class="cursor" id="cur"></div>
+<div class="cursor-dot" id="curDot"></div>
 
-  <!-- ===== NAV ===== -->
-  <nav class="nav" id="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#top">
-        <span class="mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/><rect x="17.5" y="20.5" width="4.2" height="4.2" rx="0.8" fill="#1a1400" opacity="0.45"/></svg></span>
-        <span>Proptiva<small data-i18n="brand.sub">by Heimyo · Zürich</small></span>
-      </a>
-      <div class="nav-links">
-        <a href="#system" data-i18n="nav.system">System</a>
-        <a href="#capabilities" data-i18n="nav.capabilities">Leistungen</a>
-        <a href="#platform" data-i18n="nav.platform">Portfolio-Manager</a>
-        <a href="#onboarding" data-i18n="nav.onboarding">Ablauf</a>
-        <a href="#contact" data-i18n="nav.contact">Kontakt</a>
-      </div>
-      <div class="nav-right">
-        <div class="lang-toggle" id="langToggle">
-          <button data-lang="de" class="active">DE</button>
-          <button data-lang="en">EN</button>
-        </div>
-        <a href="portfolio-demo.html" class="btn btn-primary" data-i18n="nav.cta">Live-Demo</a>
-        <button class="nav-burger" id="burger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
-      </div>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" data-cursor>
+      <span class="glyph"><svg width="18" height="18" viewBox="0 0 32 32" fill="none"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/></svg></span>
+      <span>Proptiva<small data-i18n="brand.sub">by Heimyo · Zürich</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#cockpit" data-cursor data-i18n="nav.platform">Portfolio-Cockpit</a>
+      <a href="#leistungen" data-cursor data-i18n="nav.capabilities">Leistungen</a>
+      <a href="#vergleich" data-cursor data-i18n="nav.compare">Vergleich</a>
+      <a href="#ablauf" data-cursor data-i18n="nav.onboarding">Ablauf</a>
     </div>
-  </nav>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#system" data-i18n="nav.system">System</a>
-    <a href="#capabilities" data-i18n="nav.capabilities">Leistungen</a>
-    <a href="#platform" data-i18n="nav.platform">Portfolio-Manager</a>
-    <a href="#onboarding" data-i18n="nav.onboarding">Ablauf</a>
-    <a href="#contact" data-i18n="nav.contact">Kontakt</a>
-    <a href="portfolio-demo.html" data-i18n="nav.cta">Live-Demo →</a>
+    <div class="nav-right">
+      <div class="lang" id="langToggle"><button data-lang="de" class="active">DE</button><button data-lang="en">EN</button></div>
+      <a href="#contact" class="nav-cta magnetic" data-cursor data-i18n="nav.cta">Demo anfragen</a>
+      <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
   </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#cockpit" data-i18n="nav.platform">Portfolio-Cockpit</a>
+  <a href="#leistungen" data-i18n="nav.capabilities">Leistungen</a>
+  <a href="#vergleich" data-i18n="nav.compare">Vergleich</a>
+  <a href="#ablauf" data-i18n="nav.onboarding">Ablauf</a>
+  <a href="#contact" data-i18n="nav.cta">Demo anfragen →</a>
+</div>
 
-  <!-- ===== HERO (dark) ===== -->
-  <header class="hero" id="top">
-    <div class="hero-media">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/zurich-poster.jpg" aria-hidden="true">
-        <source src="assets/video/zurich.mp4" type="video/mp4" />
-      </video>
-      <div class="hero-overlay"></div>
+<!-- HERO -->
+<header class="hero" id="top">
+  <canvas id="heroCanvas"></canvas>
+  <div class="aurora"></div>
+  <div class="wrap">
+    <span class="hero-badge reveal"><span class="dot"></span><span data-i18n="hero.badge">Für Pensionskassen, Anlagestiftungen, Fonds & Family Offices</span></span>
+    <h1 class="hero-h" id="heroH">
+      <span class="ln"><span data-i18n="hero.title.1">Ihr Immobilienportfolio —</span></span>
+      <span class="ln"><span><em data-i18n="hero.title.2">sitzungsreif aufbereitet.</em></span></span>
+    </h1>
+    <p class="hero-sub reveal" data-d="2" data-i18n="hero.lead">Live-Cockpit für Ihre Gremien, Vor-Ort-Video bei jeder Begehung und Reporting, das TER-, AMAS- und SSREI-anschlussfähig ist. Betreutes Mandat statt Software. Aus Zürich, für die Schweiz.</p>
+    <div class="hero-cta reveal" data-d="3">
+      <a href="#contact" class="btn btn-gold magnetic" data-cursor><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span data-i18n="hero.cta.primary">Demo für Ihr Portfolio</span></a>
+      <a href="#cockpit" class="hero-scroll" data-cursor><span class="bar"></span><span data-i18n="hero.cta.secondary">Cockpit ansehen</span></a>
     </div>
-    <div class="wrap">
-      <div class="hero-inner">
-        <span class="hero-badge"><span class="dot"></span><span data-i18n="hero.badge">Für Pensionskassen, Anlagestiftungen & institutionelle Investoren</span></span>
-        <h1 class="h1" data-reveal>
-          <span data-i18n="hero.title.1">Ihr Immobilienportfolio —</span><br />
-          <span class="accent" data-i18n="hero.title.2">sitzungsreif aufbereitet.</span>
-        </h1>
-        <p class="lead" data-reveal data-reveal-delay="1" data-i18n="hero.lead">
-          Proptiva führt Ihr direkt gehaltenes Liegenschaftsportfolio digital: ein Live-Cockpit für
-          Stiftungsrat und Anlagekommission, Self-Service-Szenarien, Vor-Ort-Videos bei jeder Begehung
-          und Reporting, das TER-, AMAS- und SSREI-anschlussfähig ist. Aus Zürich, für die Schweiz.
-        </p>
-        <div class="hero-cta" data-reveal data-reveal-delay="2">
-          <a href="portfolio-demo.html" class="btn btn-primary btn-lg">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            <span data-i18n="hero.cta.primary">Portfolio-Manager live erleben</span>
-          </a>
-          <a href="#contact" class="btn btn-ghost btn-lg" data-i18n="hero.cta.secondary">Gespräch vereinbaren</a>
-        </div>
-      </div>
+  </div>
+  <div class="wrap"><div class="hero-metrics reveal" data-d="3">
+    <div class="hero-metric"><div class="num"><span data-count="24">24</span><span class="unit">/7</span></div><div class="lbl" data-i18n="hero.m1">Live-Zugriff für Gremien</div></div>
+    <div class="hero-metric"><div class="num"><span data-count="100">100</span><span class="unit">%</span></div><div class="lbl" data-i18n="hero.m2">digital belegbar & prüfbar</div></div>
+    <div class="hero-metric"><div class="num" style="font-family:var(--serif)">Video</div><div class="lbl" data-i18n="hero.m3">bei jeder Begehung vor Ort</div></div>
+    <div class="hero-metric"><div class="num"><span class="unit">≈</span><span data-count="2">2</span></div><div class="lbl" data-i18n="hero.m4">Monate bis zum Go-Live</div></div>
+  </div></div>
+</header>
 
-      <div class="hero-metrics" data-reveal data-reveal-delay="2">
-        <div class="hero-metric"><div class="num"><span data-count="24" data-suffix="/7">24/7</span></div><div class="lbl" data-i18n="hero.m1">Live-Zugriff für Ihre Gremien</div></div>
-        <div class="hero-metric"><div class="num"><span data-count="100" data-suffix="%">100%</span></div><div class="lbl" data-i18n="hero.m2">digital belegbar & prüfbar</div></div>
-        <div class="hero-metric"><div class="num">Video</div><div class="lbl" data-i18n="hero.m3">bei jeder Begehung vor Ort</div></div>
-        <div class="hero-metric"><div class="num"><span class="unit">≈</span><span data-count="2">2</span></div><div class="lbl" data-i18n="hero.m4">Monate bis zum Go-Live</div></div>
-      </div>
+<!-- TRUST BAR -->
+<section class="trust">
+  <div class="wrap trust-in">
+    <span class="trust-label" data-i18n="trust.label">Entwickelt für die Anforderungen von</span>
+    <div class="trust-logos"><span>Pensionskassen</span><span>Anlagestiftungen</span><span>Immobilienfonds</span><span>Family Offices</span></div>
+  </div>
+</section>
+
+<!-- COCKPIT -->
+<section class="section cockpit" id="cockpit">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="plat.eyebrow">Der Portfolio-Manager</span>
+      <h2 class="sec-title">Ihr gesamtes Portfolio <em>auf einem Screen.</em></h2>
+      <p class="sec-lead" data-i18n="plat.lead">Live-Kennzahlen, Objekte mit Risiko- und Begehungsstatus, Video-Begehungen und Reporting auf Knopfdruck. Filtern Sie nach Region — alles rechnet sofort neu.</p>
     </div>
 
-    <span class="hero-caption">📍 Zürich · Grossmünster & Limmat</span>
-  </header>
-
-  <!-- ===== TRUST BAR ===== -->
-  <section class="trust">
-    <div class="wrap trust-inner">
-      <span class="trust-label" data-i18n="trust.label">Entwickelt für die Anforderungen von</span>
-      <div class="trust-logos">
-        <span>Pensionskassen</span>
-        <span>Anlagestiftungen</span>
-        <span>Immobilienfonds</span>
-        <span>Family Offices</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SYSTEM / DATA FLOW ===== -->
-  <section class="section-pad" id="system">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="sys.eyebrow">Das System</span>
-        <h2 class="h2" data-i18n="sys.title">Aus Ihren Objektdaten werden belegbare Entscheidungen</h2>
-        <p class="lead" style="margin-inline:auto" data-i18n="sys.lead">
-          Proptiva verbindet ein spezialisiertes Kompetenzzentrum mit einer Plattform.
-          Alles, was Ihr Portfolio ausmacht, fliesst zusammen — und kommt als Live-Cockpit,
-          Szenario und gremienfähiges Reporting wieder heraus.
-        </p>
-      </div>
-
-      <div class="flow" data-reveal>
-        <div class="flow-col">
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><span data-i18n="sys.in1">Mietverträge & Objektdaten</span></div>
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span><span data-i18n="sys.in2">Bewertungen & Sollrendite</span></div>
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><span data-i18n="sys.in3">Begehungs-Videos</span></div>
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></span><span data-i18n="sys.in4">Belege & ESG-Daten</span></div>
-        </div>
-        <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        <div class="flow-core">
-          <div class="mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/><rect x="17.5" y="20.5" width="4.2" height="4.2" rx="0.8" fill="#1a1400" opacity="0.45"/></svg></div>
-          <h3 data-i18n="sys.core.t">Proptiva</h3>
-          <p data-i18n="sys.core.p">Kompetenzzentrum + Plattform</p>
-        </div>
-        <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        <div class="flow-col">
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span><span data-i18n="sys.out1">Live-Cockpit für Ihre Gremien</span></div>
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg></span><span data-i18n="sys.out2">Szenarien & Sollrendite</span></div>
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span><span data-i18n="sys.out3">TER-/AMAS-/SSREI-Reporting</span></div>
-          <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg></span><span data-i18n="sys.out4">Entscheidungen in Echtzeit</span></div>
+    <div class="dash reveal" id="dash">
+      <div class="scanline" aria-hidden="true"></div>
+      <div class="hud-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="dash-top">
+        <div class="lhs"><span class="dash-dot"><i></i><i></i><i></i></span><span class="dash-title">app.proptiva.ch / portfolio</span></div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div class="view-toggle" id="viewToggle"><button data-view="gremium" class="active" data-i18n="pm.view.board">Gremienansicht</button><button data-view="asset" data-i18n="pm.view.asset">Asset-Sicht</button></div>
+          <span class="dash-live"><i></i>Live</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== INTEGRATIONS / DATA SOURCES ===== -->
-  <section class="section-pad section-alt" id="integrations">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="int.eyebrow">Integrationen</span>
-        <h2 class="h2" data-i18n="int.title">Wir verbinden uns mit Ihrer bestehenden Systemlandschaft</h2>
-        <p class="lead" style="margin-inline:auto" data-i18n="int.lead">Proptiva ersetzt nicht, was funktioniert — wir bündeln Ihre Datenquellen. Über Schnittstellen und Importe fliessen Bewirtschaftung, Buchhaltung, Bewertung, Zahlungen und ESG-Daten in ein Cockpit. Beispiele je Kategorie:</p>
-      </div>
-      <div class="grid grid-3">
-        <div class="card" data-reveal>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v16"/></svg></div>
-          <span class="int-cat" data-i18n="int.c1.cat">Bewirtschaftung & ERP</span>
-          <h3 data-i18n="int.c1.t">Objekt-, Vertrags- & Buchhaltungsdaten</h3>
-          <div class="int-chips"><span class="chip">Abacus Immobilien</span><span class="chip">GARAIO REM</span><span class="chip">ImmoTop2</span><span class="chip">Rimo</span><span class="chip">SAP</span></div>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="1">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
-          <span class="int-cat" data-i18n="int.c2.cat">Bewertung & Marktdaten</span>
-          <h3 data-i18n="int.c2.t">Verkehrswerte & Benchmarks</h3>
-          <div class="int-chips"><span class="chip">Wüest Partner</span><span class="chip">IAZI / CIFI</span><span class="chip">PriceHubble</span><span class="chip">FPRE</span></div>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="2">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
-          <span class="int-cat" data-i18n="int.c3.cat">Banking & Zahlungen</span>
-          <h3 data-i18n="int.c3.t">Mietzinse & Zahlungsabgleich</h3>
-          <div class="int-chips"><span class="chip">ISO 20022 / camt</span><span class="chip">QR-Rechnung</span><span class="chip">eBanking-Import</span></div>
-        </div>
-        <div class="card" data-reveal>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></div>
-          <span class="int-cat" data-i18n="int.c4.cat">ESG & Energie</span>
-          <h3 data-i18n="int.c4.t">CO2, Energie & Nachhaltigkeit</h3>
-          <div class="int-chips"><span class="chip">GEAK</span><span class="chip">Minergie</span><span class="chip">SSREI</span><span class="chip">CO2-Daten</span></div>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="1">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div>
-          <span class="int-cat" data-i18n="int.c5.cat">Dokumente & Kommunikation</span>
-          <h3 data-i18n="int.c5.t">Belege, Verträge & Portale</h3>
-          <div class="int-chips"><span class="chip">Casavi</span><span class="chip">SharePoint / DMS</span><span class="chip">E-Mail-Import</span></div>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="2">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/></svg></div>
-          <span class="int-cat" data-i18n="int.c6.cat">Reporting & Konsolidierung</span>
-          <h3 data-i18n="int.c6.t">Export in Ihre Vermögensrechnung</h3>
-          <div class="int-chips"><span class="chip">KGAST-Reporting</span><span class="chip">PDF / Excel</span><span class="chip">API</span></div>
-        </div>
-      </div>
-      <p class="int-note" data-i18n="int.note">Kein passendes System dabei? <strong>Wir binden weitere Quellen per API oder Import an.</strong></p>
-    </div>
-  </section>
-
-  <!-- ===== CAPABILITIES ===== -->
-  <section class="section-pad section-alt" id="capabilities">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="cap.eyebrow">Leistungen</span>
-        <h2 class="h2" data-i18n="cap.title">Was ein spezialisiertes Mandat leisten muss</h2>
-        <p class="lead" style="margin-inline:auto" data-i18n="cap.lead">
-          Ein Live-Dashboard allein genügt nicht. Institutionelle Portfolios brauchen Nachweisbarkeit,
-          Fachwissen und einen Blick auf die tatsächliche Substanz — nicht nur auf Zahlen.
-        </p>
-      </div>
-
-      <div class="grid grid-3">
-        <div class="card" data-reveal>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div>
-          <span class="card-tag" data-i18n="cap.c1.tag">Governance</span>
-          <h3 data-i18n="cap.c1.title">Live-Cockpit für Ihre Gremien</h3>
-          <p data-i18n="cap.c1.text">Rollenbasierter Zugang für Stiftungsrat, Anlage- und Immobilienkommission. So erfüllen Ihre Gremien ihre nicht delegierbare Kontrollpflicht nachweisbar — jederzeit, nicht nur zur Sitzung.</p>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="1">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
-          <span class="card-tag" data-i18n="cap.c2.tag">Substanz</span>
-          <h3 data-i18n="cap.c2.title">Vor-Ort-Video bei jeder Begehung</h3>
-          <p data-i18n="cap.c2.text">Bei jeder Objektbegehung entsteht ein Video, verknüpft mit der Liegenschaft. Sie sehen den realen Zustand Ihrer Substanz — nicht nur eine Kennzahl. Das bietet in dieser Form kaum jemand.</p>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="2">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg></div>
-          <span class="card-tag" data-i18n="cap.c3.tag">Self-Service</span>
-          <h3 data-i18n="cap.c3.title">Szenarien selbst rechnen</h3>
-          <p data-i18n="cap.c3.text">Sollrendite, Leerstand, Mietentwicklung, CAPEX — im betreuten Mandat, nicht als Software, die Sie selbst betreiben müssen. Antworten in Sekunden statt Tagen.</p>
-        </div>
-        <div class="card" data-reveal>
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-          <span class="card-tag" data-i18n="cap.c4.tag">Kosten</span>
-          <h3 data-i18n="cap.c4.title">Kostentransparenz in Ihrer Sprache</h3>
-          <p data-i18n="cap.c4.text">Benchmarkfähige Kostenausweisung, anschlussfähig an TER_ISA und TER_REF. Die Kostentransparenzquote für den Anhang der Jahresrechnung — nicht „günstig", sondern belegbar.</p>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="1">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></div>
-          <span class="card-tag" data-i18n="cap.c5.tag">ESG & Klima</span>
-          <h3 data-i18n="cap.c5.title">CO2-Absenkpfad pro Liegenschaft</h3>
-          <p data-i18n="cap.c5.text">AMAS-Kennzahlen (seit 31.12.2024 Pflicht), Absenkpfad Richtung Net-Zero 2050 mit Investitionskosten vs. CO2-Einsparung — SSREI- und GRESB-anschlussfähig.</p>
-        </div>
-        <div class="card" data-reveal data-reveal-delay="2">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div>
-          <span class="card-tag" data-i18n="cap.c6.tag">Kompetenzzentrum</span>
-          <h3 data-i18n="cap.c6.title">Spezialwissen & digitale Zusammenarbeit</h3>
-          <p data-i18n="cap.c6.text">Ein dediziertes Team nur für institutionelle Portfolios — Bewertung, Recht, CAPEX, ESG. Digitale Zusammenarbeit mit Ihren Gremien per API und Export, nicht per E-Mail-Anhang.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== WHY NOW / regulatory drivers ===== -->
-  <section class="section-pad">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="why.eyebrow">Warum jetzt</span>
-        <h2 class="h2" data-i18n="why.title">Der regulatorische Rückenwind ist da</h2>
-      </div>
-      <div class="impact">
-        <div class="impact-item" data-reveal><div class="num" data-i18n="why.1.n">Pflicht</div><div class="lbl" data-i18n="why.1.l">AMAS-ESG-Kennzahlen in Jahresberichten seit 31.12.2024</div></div>
-        <div class="impact-item" data-reveal data-reveal-delay="1"><div class="num">Art. 51a</div><div class="lbl" data-i18n="why.2.l">BVG: nicht delegierbare Kontrollpflicht des Stiftungsrats</div></div>
-        <div class="impact-item" data-reveal data-reveal-delay="2"><div class="num"><span class="unit">−</span>30%</div><div class="lbl" data-i18n="why.3.l">THG bis 2030 als Zwischenschritt Richtung Net-Zero 2050</div></div>
-        <div class="impact-item" data-reveal data-reveal-delay="3"><div class="num" data-i18n="why.4.n">Kriterium</div><div class="lbl" data-i18n="why.4.l">Digitale Zusammenarbeit als Mandatsvoraussetzung</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== COMPARISON ===== -->
-  <section class="section-pad section-alt">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow" data-i18n="cmp.eyebrow">Direkter Vergleich</span>
-        <h2 class="h2" data-i18n="cmp.title">Proptiva gegenüber klassischer Verwaltung</h2>
-        <p class="lead" data-i18n="cmp.lead">Die klassische Verwaltung beschreibt den heute verbreiteten Status quo. Einzelne Anbieter sind digitaler — die Kombination aus betreutem Mandat, Live-Cockpit und Vor-Ort-Video ist es selten.</p>
-      </div>
-      <div class="compare" data-reveal>
-        <table>
-          <thead>
-            <tr>
-              <th data-i18n="cmp.h1">Kriterium</th>
-              <th data-i18n="cmp.h2">Klassische Verwaltung</th>
-              <th class="us">Proptiva</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td data-i18n="cmp.r1">Zugriff für Gremien</td><td class="no" data-i18n="cmp.r1a">Quartalsbericht als PDF</td><td class="col-us yes" data-i18n="cmp.r1b">Rollenbasiert, live, 24/7</td></tr>
-            <tr><td data-i18n="cmp.r2">Eigene Szenarien</td><td class="no" data-i18n="cmp.r2a">Anfrage per E-Mail, Tage später</td><td class="col-us yes" data-i18n="cmp.r2b">Self-Service im Mandat</td></tr>
-            <tr><td data-i18n="cmp.r3">Zustand der Substanz</td><td class="no" data-i18n="cmp.r3a">Textbericht, selten aktuell</td><td class="col-us yes" data-i18n="cmp.r3b">Video bei jeder Begehung</td></tr>
-            <tr><td data-i18n="cmp.r4">Kostenausweisung</td><td class="no" data-i18n="cmp.r4a">uneinheitlich, schwer vergleichbar</td><td class="col-us yes" data-i18n="cmp.r4b">TER_ISA-/TER_REF-anschlussfähig</td></tr>
-            <tr><td data-i18n="cmp.r5">ESG & CO2</td><td class="no" data-i18n="cmp.r5a">nachträglich zusammengetragen</td><td class="col-us yes" data-i18n="cmp.r5b">integriert, AMAS/SSREI-fähig</td></tr>
-            <tr><td data-i18n="cmp.r6">Fachwissen für Institutionelle</td><td class="no" data-i18n="cmp.r6a">läuft nebenbei mit</td><td class="col-us yes" data-i18n="cmp.r6b">dediziertes Kompetenzzentrum</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PLATFORM SHOWCASE (light) ===== -->
-  <section class="section-pad section-alt" id="platform">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="plat.eyebrow">Der Portfolio-Manager</span>
-        <h2 class="h2" data-i18n="plat.title">Ihr gesamtes Portfolio auf einem Screen</h2>
-        <p class="lead" style="margin-inline:auto" data-i18n="plat.lead">
-          Live-Kennzahlen, Objekte mit Ampelstatus, Videos der letzten Begehung und ein Rechner,
-          mit dem Ihre Gremien Szenarien selbst durchspielen.
-        </p>
-      </div>
-
-      <div class="demo-topline" data-reveal>
-        <span class="demo-flag"><span class="rec"></span><span data-i18n="plat.auto">Produkt-Rundgang · läuft automatisch</span></span>
-        <button class="demo-replay" id="demoReplay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.5 9A9 9 0 006 5.3L1 10M3.5 15A9 9 0 0018 18.7L23 14"/></svg><span data-i18n="plat.replay">Neu abspielen</span></button>
-      </div>
-      <div class="showcase-frame playing" id="pmDemo" data-reveal>
-        <div class="demo-progress"></div>
-        <div class="demo-cursor"><svg viewBox="0 0 24 24" fill="#0C1526" stroke="#ffffff" stroke-width="1"><path d="M4 2l6 16 2.6-6.6L19 9z"/></svg></div>
-        <div class="demo-toast">🎥 <span data-i18n="plat.toast">Neue Begehung: Zürich West</span></div>
-        <div class="showcase-bar">
-          <div class="dots"><i></i><i></i><i></i></div>
-          <span class="url">app.proptiva.ch / portfolio</span>
-        </div>
-        <div class="showcase-body">
-          <div>
-            <div class="mini-kpis">
-              <div class="mini-kpi"><div class="k" data-i18n="plat.k1">Portfoliowert</div><div class="v">CHF 1.41 Mrd</div><div class="d pos">▲ +2.3% YTD</div></div>
-              <div class="mini-kpi"><div class="k" data-i18n="plat.k2">Netto-Rendite</div><div class="v">3.8%</div><div class="d pos">▲ +0.2 pp</div></div>
-              <div class="mini-kpi"><div class="k" data-i18n="plat.k3">Vermietungsquote</div><div class="v">97.4%</div><div class="d pos">▲ +0.6 pp</div></div>
-              <div class="mini-kpi"><div class="k" data-i18n="plat.k4">Leerstand</div><div class="v">2.6%</div><div class="d neg">▼ -0.6 pp</div></div>
-            </div>
-            <div class="mini-chart">
-              <div style="font-size:0.78rem;color:var(--ink-3);margin-bottom:10px" data-i18n="plat.chart">Portfoliowert · 12 Monate</div>
-              <svg id="showcaseChart" viewBox="0 0 520 150" preserveAspectRatio="none" style="width:100%;height:150px"></svg>
-            </div>
+      <div class="chips" id="chips"></div>
+      <div class="dash-grid">
+        <div class="dash-col">
+          <div class="kpi-grid" id="kpiGrid"></div>
+          <div class="health">
+            <svg viewBox="0 0 80 80"><circle class="ring-bg" cx="40" cy="40" r="34"/><circle class="ring-fg" id="healthRing" cx="40" cy="40" r="34"/><text class="score" id="healthScore" x="40" y="47" text-anchor="middle">–</text></svg>
+            <div><div class="h-lab" data-i18n="pm.health">Portfolio-Health-Score</div><div class="h-t" id="healthTitle">solide</div><div class="h-d" data-i18n="pm.health.d">Gewichtet aus Rendite, Leerstand, Instandhaltung & ESG.</div></div>
           </div>
-          <div class="mini-side">
-            <div class="mini-list">
-              <div style="font-size:0.78rem;color:var(--ink-3);padding:8px 0" data-i18n="plat.objects">Objekte · Status</div>
-              <div class="mini-row"><span><span class="status-dot g"></span>Seefeldstrasse 12, ZH</span><span style="color:var(--pos)">4.1%</span></div>
-              <div class="mini-row"><span><span class="status-dot g"></span>Bahnhofpark West, ZH</span><span style="color:var(--pos)">3.7%</span></div>
-              <div class="mini-row"><span><span class="status-dot y"></span>Länggasse 88, BE</span><span style="color:var(--gold-ink)">3.2%</span></div>
-              <div class="mini-row"><span><span class="status-dot r"></span>Industrie Nord, SG</span><span style="color:var(--neg)">2.1%</span></div>
+          <div class="chart-head"><span class="t" data-i18n="pm.chart">Leerstandsquote · 12 Monate</span><span class="v" id="chartLabel"></span></div>
+          <div class="chart-wrap" id="chartWrap"><svg id="chart" viewBox="0 0 400 140" preserveAspectRatio="none"></svg><div class="chart-tip" id="chartTip"></div></div>
+        </div>
+        <div class="dash-col">
+          <div class="map-block">
+            <div class="map-wrap">
+              <svg viewBox="0 0 640 420" id="map" preserveAspectRatio="xMidYMid meet">
+                <defs><linearGradient id="chFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E4C46B" stop-opacity="0.12"/><stop offset="1" stop-color="#E4C46B" stop-opacity="0.02"/></linearGradient></defs>
+                <path class="map-country" d="M365.1 16.0L367.0 20.5L353.1 23.2L350.5 30.7L344.1 36.1L345.9 39.7L344.1 42.1L353.1 47.5L371.0 41.9L374.3 45.1L373.4 48.2L369.8 47.4L370.9 53.0L367.3 56.7L365.1 55.8L366.6 53.1L359.3 49.3L351.3 55.8L355.9 59.3L341.6 62.5L333.2 61.4L329.6 54.3L320.2 54.8L318.6 51.7L304.1 59.1L301.3 64.1L278.5 66.1L274.5 57.8L265.3 58.0L262.1 64.1L248.4 69.1L240.6 63.4L247.5 62.6L245.7 58.6L248.8 55.7L238.7 60.3L234.6 57.8L222.3 68.0L226.9 70.2L222.5 71.2L224.1 75.9L220.9 78.9L213.9 75.8L212.1 79.0L217.0 80.7L209.6 87.9L196.7 87.4L188.7 91.1L187.1 87.5L178.5 86.5L182.6 76.5L153.7 76.6L156.0 84.2L147.8 88.3L147.6 93.6L144.3 93.9L139.6 103.7L157.4 100.4L162.5 102.6L163.2 107.9L156.7 110.0L154.8 115.5L147.9 116.9L149.8 125.5L134.5 139.8L137.0 140.9L116.0 157.3L114.5 159.9L117.9 163.2L103.7 174.8L88.3 178.0L79.7 187.2L83.6 193.9L83.4 202.4L79.5 210.2L83.3 214.7L82.3 217.2L36.4 255.8L42.7 262.2L31.5 277.8L33.2 282.2L30.4 287.3L44.5 297.2L35.5 313.2L38.4 319.7L17.7 328.2L16.9 330.4L20.9 333.2L16.0 343.7L20.9 340.7L26.4 342.6L28.7 339.4L39.6 341.5L61.1 325.0L63.2 318.8L56.6 319.6L53.7 314.8L54.9 309.8L51.2 307.9L55.6 298.4L66.6 290.0L78.7 287.6L91.4 279.8L113.2 280.0L131.8 285.2L129.9 294.7L125.0 299.3L137.8 314.1L129.4 329.0L128.7 342.3L142.2 344.7L139.0 358.7L140.9 360.8L147.1 356.2L156.5 369.0L161.6 384.1L169.8 396.2L176.8 392.8L181.1 396.7L184.8 390.7L190.5 391.1L194.4 384.5L207.2 389.1L222.6 376.6L228.4 377.3L229.3 371.7L244.1 373.8L253.0 383.9L256.2 380.7L263.3 385.3L272.3 384.8L273.5 374.1L277.8 369.5L287.7 369.6L291.5 366.2L294.4 360.2L294.3 349.0L304.5 347.0L305.2 343.3L309.5 342.3L311.7 334.0L308.0 324.6L300.4 318.2L308.4 309.8L317.7 309.1L325.1 298.4L331.9 294.6L331.3 290.2L328.5 289.6L330.8 285.8L348.6 278.1L352.1 282.2L352.8 291.6L351.7 304.2L347.1 310.1L350.5 317.1L348.9 319.6L361.0 326.2L371.9 344.9L385.4 349.5L389.3 345.2L391.4 349.2L397.9 349.4L404.0 354.8L394.8 370.6L409.7 377.0L409.5 381.9L416.2 394.9L412.2 402.0L417.5 400.0L427.9 404.0L431.1 393.1L435.7 388.4L426.6 383.0L425.9 377.1L422.5 374.7L427.3 370.2L425.0 362.3L433.7 356.0L435.6 352.2L433.4 345.7L450.2 333.8L453.2 324.1L456.7 323.5L457.5 316.5L463.9 305.2L461.3 287.7L456.9 284.2L460.8 279.4L461.5 272.0L473.5 269.6L478.6 277.7L480.8 272.2L485.4 269.9L485.6 294.8L496.3 308.7L508.3 312.8L518.7 312.0L523.3 300.3L527.6 303.1L551.5 294.9L557.4 300.7L555.2 306.5L557.6 307.6L557.0 312.6L565.1 316.3L563.5 324.8L567.0 326.7L581.3 319.3L571.7 304.6L572.3 299.0L579.5 293.1L579.3 287.7L574.7 284.9L569.3 287.2L563.1 282.0L564.9 266.8L563.1 263.1L571.6 253.9L571.2 250.7L586.8 247.9L589.6 244.6L592.5 249.4L590.7 257.4L593.8 256.3L597.9 261.2L603.8 262.7L605.4 259.8L618.8 264.6L621.8 261.1L622.9 248.9L617.4 244.3L612.2 244.8L609.1 234.7L613.3 228.6L611.5 225.1L616.8 221.2L614.6 213.8L617.9 211.5L624.0 185.5L607.1 174.5L603.0 176.4L600.4 187.7L590.5 187.0L588.3 198.4L571.4 203.5L560.0 194.7L540.5 186.6L542.7 175.3L539.4 168.7L510.6 161.3L487.5 163.1L486.8 160.6L493.4 153.3L489.3 134.6L499.2 113.5L514.7 97.4L511.8 85.0L504.2 83.0L499.3 76.7L497.5 68.1L493.3 68.5L484.0 56.9L458.4 44.1L447.1 45.1L427.1 39.2L409.8 46.2L403.7 39.5L406.7 35.4L399.9 33.8L397.7 28.8L392.9 32.9L398.3 37.4L396.0 41.1L387.3 37.3L388.2 33.2L385.4 29.3L389.3 26.8L382.2 24.6L381.2 19.5L377.4 16.8L374.4 24.5L372.7 16.5L365.1 16.0Z"/>
+                <g id="markers"></g>
+              </svg>
+              <span class="map-hud"><i></i>Radar · Live</span>
+              <span class="map-legend"><i></i>Objektstandorte · Schweiz</span>
             </div>
-            <div class="mini-list" style="padding:16px 14px">
-              <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--ink-2)"><span style="font-size:1.1rem">🎥</span><span data-i18n="plat.video">Neueste Begehung: Zürich West</span></div>
-            </div>
+            <table class="tbl"><thead><tr><th data-i18n="pm.t.obj">Objekt</th><th data-i18n="pm.t.reg">Region</th><th class="num">EH</th><th class="num" data-i18n="pm.t.vac">Leerst.</th><th data-i18n="pm.t.visit">Begehung</th><th style="text-align:center">Status</th></tr></thead><tbody id="tblBody"></tbody></table>
+            <div class="tbl-foot"><span id="tblCount"></span><span data-i18n="pm.export">Reporting · PDF / CSV / API</span></div>
           </div>
         </div>
       </div>
-      <div style="text-align:center;margin-top:36px" data-reveal>
-        <a href="portfolio-demo.html" class="btn btn-primary btn-lg">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          <span data-i18n="plat.cta">Interaktive Demo öffnen</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== VIDEO ===== -->
-  <section class="section-pad">
-    <div class="wrap">
-      <div class="grid grid-2" style="align-items:center;gap:48px">
-        <div data-reveal>
-          <span class="eyebrow" data-i18n="vid.eyebrow">Vor Ort. Für Sie.</span>
-          <h2 class="h2" style="margin:14px 0 18px" data-i18n="vid.title">Sehen Sie die Substanz, nicht nur die Zahl</h2>
-          <p class="lead" data-i18n="vid.lead">
-            Kennzahlen zeigen die Performance — aber nicht den Zustand des Dachs. Bei jeder Begehung
-            filmen wir die Liegenschaft: Fassade, Technik, kritische Punkte. Die Videos landen direkt
-            im Portfolio-Manager, verknüpft mit dem Objekt, mit Zeitstempel und Verlauf.
-          </p>
-          <ul class="check-list">
-            <li><span class="ck">✓</span><span data-i18n="vid.p1">Standardisiert bei jeder Begehung</span></li>
-            <li><span class="ck">✓</span><span data-i18n="vid.p2">Direkt am Objekt im System verknüpft</span></li>
-            <li><span class="ck">✓</span><span data-i18n="vid.p3">Zeitstempel & Verlauf pro Liegenschaft</span></li>
-          </ul>
+      <div class="dash-modules">
+        <div class="vid-module" data-cursor>
+          <div class="vscan"></div>
+          <span class="rec"><i></i>REC</span>
+          <div class="vplay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="vcap">🎥 <span data-i18n="pm.vid">Begehung: Zürich West · 01.07.2026</span></span>
         </div>
-        <div data-reveal data-reveal-delay="1">
-          <div class="video-block" id="videoBlock">
-            <div class="scene"></div>
-            <div class="buildings" id="videoBuildings"></div>
-            <div class="scanline"></div>
-            <span class="vid-callout" style="top:24%;left:16%" data-i18n="vid.ca1">Fassade · intakt</span>
-            <span class="vid-callout c2" style="top:52%;left:42%" data-i18n="vid.ca2">Technik · Wartung fällig</span>
-            <span class="vid-callout c3" style="top:32%;left:64%" data-i18n="vid.ca3">Dach · geprüft</span>
-            <span class="video-tag"><span class="dot"></span>REC</span>
-            <button class="play-btn" id="playBtn" aria-label="Demo-Video abspielen"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
-            <div class="video-caption">
-              <span class="loc">📍 Zürich West · Toni-Areal</span>
-              <span class="loc" data-i18n="vid.caption">Begehung 01.07.2026</span>
-            </div>
-          </div>
+        <div class="rep-tiles">
+          <div class="rep-tile" data-cursor><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><span><span class="rt" data-i18n="pm.rep1">Gremien-Report</span><br><span class="rs">TER · AMAS · SSREI</span></span></div>
+          <div class="rep-tile" data-cursor><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span><span><span class="rt" data-i18n="pm.rep2">Kostentransparenz</span><br><span class="rs">TER_ISA / TER_REF</span></span></div>
+          <div class="rep-tile" data-cursor><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></span><span><span class="rt" data-i18n="pm.rep3">ESG / CO₂-Absenkpfad</span><br><span class="rs">Net-Zero 2050</span></span></div>
         </div>
       </div>
+      <div class="demo-cursor" id="demoCursor"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M4 2l6 16 2.5-6.5L19 9z"/></svg></div>
     </div>
-  </section>
+    <div style="text-align:center;margin-top:34px" class="reveal">
+      <a href="portfolio-demo.html" class="btn btn-ghost" data-cursor><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-i18n="plat.cta">Interaktive Vollversion öffnen</span></a>
+    </div>
+  </div>
+</section>
 
-  <!-- ===== EXAMPLE OBJECT (Zürich) ===== -->
-  <section class="section-pad section-alt">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
+<!-- LEISTUNGEN -->
+<section class="section gridbg" id="leistungen">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="cap.eyebrow">Leistungen</span>
+      <h2 class="sec-title">Was ein spezialisiertes Mandat <em>leisten muss.</em></h2>
+      <p class="sec-lead" data-i18n="cap.lead">Ein Live-Dashboard allein genügt nicht. Institutionelle Portfolios brauchen Nachweisbarkeit, Fachwissen und den Blick auf die reale Substanz.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></div><span class="card-tag" data-i18n="cap.c1.tag">Governance</span><h3 data-i18n="cap.c1.title">Live-Cockpit für Ihre Gremien</h3><p data-i18n="cap.c1.text">Rollenbasierter Zugang für Stiftungsrat, Anlage- und Immobilienkommission. Ihre Gremien erfüllen ihre nicht delegierbare Kontrollpflicht nachweisbar — jederzeit.</p></div>
+      <div class="card reveal" data-d="1"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><span class="card-tag" data-i18n="cap.c2.tag">Substanz</span><h3 data-i18n="cap.c2.title">Vor-Ort-Video bei jeder Begehung</h3><p data-i18n="cap.c2.text">Jede Begehung erzeugt ein Video, verknüpft mit der Liegenschaft. Sie sehen den realen Zustand Ihrer Substanz — nicht nur eine Kennzahl.</p></div>
+      <div class="card reveal" data-d="2"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg></div><span class="card-tag" data-i18n="cap.c3.tag">Self-Service</span><h3 data-i18n="cap.c3.title">Szenarien selbst rechnen</h3><p data-i18n="cap.c3.text">Sollrendite, Leerstand, Mietentwicklung, CAPEX — im betreuten Mandat, nicht als Software, die Sie selbst betreiben. Antworten in Sekunden.</p></div>
+      <div class="card reveal"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><span class="card-tag" data-i18n="cap.c4.tag">Kosten</span><h3 data-i18n="cap.c4.title">Kostentransparenz in Ihrer Sprache</h3><p data-i18n="cap.c4.text">Benchmarkfähige Kostenausweisung, anschlussfähig an TER_ISA und TER_REF — die Kostentransparenzquote für den Anhang der Jahresrechnung.</p></div>
+      <div class="card reveal" data-d="1"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></div><span class="card-tag" data-i18n="cap.c5.tag">ESG & Klima</span><h3 data-i18n="cap.c5.title">CO₂-Absenkpfad pro Liegenschaft</h3><p data-i18n="cap.c5.text">AMAS-Kennzahlen (seit 31.12.2024 Pflicht), Absenkpfad Richtung Net-Zero 2050 — Investitionskosten vs. CO₂-Einsparung, SSREI-/GRESB-fähig.</p></div>
+      <div class="card reveal" data-d="2"><div class="card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div><span class="card-tag" data-i18n="cap.c6.tag">Kompetenzzentrum</span><h3 data-i18n="cap.c6.title">Spezialwissen für Institutionelle</h3><p data-i18n="cap.c6.text">Ein dediziertes Team nur für institutionelle Portfolios — Bewertung, Recht, CAPEX, ESG. Digitale Zusammenarbeit per API und Export, nicht per E-Mail-Anhang.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VERGLEICH -->
+<section class="section" id="vergleich">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="cmp.eyebrow">Direkter Vergleich</span>
+      <h2 class="sec-title">Proptiva gegenüber <em>klassischer Verwaltung.</em></h2>
+      <p class="sec-lead" data-i18n="cmp.lead">Einzelne Anbieter sind digitaler — die Kombination aus betreutem Mandat, Live-Cockpit und Vor-Ort-Video ist es selten.</p>
+    </div>
+    <div class="compare reveal">
+      <table>
+        <thead><tr><th data-i18n="cmp.h1">Kriterium</th><th data-i18n="cmp.h2">Klassische Verwaltung</th><th class="us">Proptiva</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="cmp.r1">Zugriff für Gremien</td><td class="no" data-i18n="cmp.r1a">Quartalsbericht als PDF</td><td class="col-us yes" data-i18n="cmp.r1b">Rollenbasiert, live, 24/7</td></tr>
+          <tr><td data-i18n="cmp.r2">Eigene Szenarien</td><td class="no" data-i18n="cmp.r2a">Anfrage per E-Mail, Tage später</td><td class="col-us yes" data-i18n="cmp.r2b">Self-Service im Mandat</td></tr>
+          <tr><td data-i18n="cmp.r3">Zustand der Substanz</td><td class="no" data-i18n="cmp.r3a">Textbericht, selten aktuell</td><td class="col-us yes" data-i18n="cmp.r3b">Video bei jeder Begehung</td></tr>
+          <tr><td data-i18n="cmp.r4">Kostenausweisung</td><td class="no" data-i18n="cmp.r4a">uneinheitlich, schwer vergleichbar</td><td class="col-us yes" data-i18n="cmp.r4b">TER_ISA-/TER_REF-anschlussfähig</td></tr>
+          <tr><td data-i18n="cmp.r5">ESG & CO₂</td><td class="no" data-i18n="cmp.r5a">nachträglich zusammengetragen</td><td class="col-us yes" data-i18n="cmp.r5b">integriert, AMAS/SSREI-fähig</td></tr>
+          <tr><td data-i18n="cmp.r6">Fachwissen für Institutionelle</td><td class="no" data-i18n="cmp.r6a">läuft nebenbei mit</td><td class="col-us yes" data-i18n="cmp.r6b">dediziertes Kompetenzzentrum</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="section gridbg">
+  <div class="wrap">
+    <div class="grid grid-2" style="align-items:center;gap:48px">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="vid.eyebrow">Vor Ort. Für Sie.</span>
+        <h2 class="sec-title" style="margin:16px 0 0" data-i18n="vid.title">Sehen Sie die Substanz, nicht nur die Zahl</h2>
+        <p class="sec-lead" data-i18n="vid.lead">Kennzahlen zeigen die Performance — nicht den Zustand des Dachs. Bei jeder Begehung filmen wir die Liegenschaft: Fassade, Technik, kritische Punkte. Direkt im Cockpit verknüpft, mit Zeitstempel und Verlauf.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span><span data-i18n="vid.p1">Standardisiert bei jeder Begehung</span></li>
+          <li><span class="ck">✓</span><span data-i18n="vid.p2">Direkt am Objekt im System verknüpft</span></li>
+          <li><span class="ck">✓</span><span data-i18n="vid.p3">Zeitstempel & Verlauf pro Liegenschaft</span></li>
+        </ul>
+      </div>
+      <div class="reveal" data-d="1">
+        <div class="video-block" id="videoBlock">
+          <div class="vscan"></div><div class="buildings"></div>
+          <span class="vid-callout" style="top:24%;left:14%" data-i18n="vid.ca1">Fassade · intakt</span>
+          <span class="vid-callout c2" style="top:52%;left:44%" data-i18n="vid.ca2">Technik · Wartung fällig</span>
+          <span class="vid-callout c3" style="top:32%;left:66%" data-i18n="vid.ca3">Dach · geprüft</span>
+          <span class="video-tag"><span class="dot"></span>REC</span>
+          <button class="play-btn" id="playBtn" aria-label="Video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+          <div class="video-caption"><span class="loc">📍 Zürich West · Toni-Areal</span><span class="loc" data-i18n="vid.caption">Begehung 01.07.2026</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM + INTEGRATIONEN -->
+<section class="section" id="system">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="sys.eyebrow">System & Integrationen</span>
+      <h2 class="sec-title">Aus Ihren Objektdaten werden <em>belegbare Entscheidungen.</em></h2>
+      <p class="sec-lead" data-i18n="int.lead">Proptiva ersetzt nicht, was funktioniert — wir bündeln Ihre Datenquellen. Über Schnittstellen und Importe fliessen Bewirtschaftung, Bewertung, Zahlungen und ESG-Daten in ein Cockpit.</p>
+    </div>
+    <div class="flow reveal">
+      <div class="flow-col">
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><span data-i18n="sys.in1">Mietverträge & Objektdaten</span></div>
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span><span data-i18n="sys.in2">Bewertungen & Sollrendite</span></div>
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span><span data-i18n="sys.in3">Begehungs-Videos</span></div>
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></span><span data-i18n="sys.in4">Belege & ESG-Daten</span></div>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-core"><div class="glyph"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/></svg></div><h3>Proptiva</h3><p data-i18n="sys.core.p">Kompetenzzentrum + Plattform</p></div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="flow-col">
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg></span><span data-i18n="sys.out1">Live-Cockpit für Gremien</span></div>
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg></span><span data-i18n="sys.out2">Szenarien & Sollrendite</span></div>
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span><span data-i18n="sys.out3">TER-/AMAS-/SSREI-Reporting</span></div>
+        <div class="flow-node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg></span><span data-i18n="sys.out4">Entscheidungen in Echtzeit</span></div>
+      </div>
+    </div>
+    <div class="grid grid-3" style="margin-top:40px">
+      <div class="card reveal"><span class="card-tag" data-i18n="int.c1.cat">Bewirtschaftung & ERP</span><h3 data-i18n="int.c1.t">Objekt-, Vertrags- & Buchhaltungsdaten</h3><div class="int-chips"><span class="chip">Abacus</span><span class="chip">GARAIO REM</span><span class="chip">ImmoTop2</span><span class="chip">Rimo</span><span class="chip">SAP</span></div></div>
+      <div class="card reveal" data-d="1"><span class="card-tag" data-i18n="int.c2.cat">Bewertung & Marktdaten</span><h3 data-i18n="int.c2.t">Verkehrswerte & Benchmarks</h3><div class="int-chips"><span class="chip">Wüest Partner</span><span class="chip">IAZI / CIFI</span><span class="chip">PriceHubble</span><span class="chip">FPRE</span></div></div>
+      <div class="card reveal" data-d="2"><span class="card-tag" data-i18n="int.c3.cat">Banking & Zahlungen</span><h3 data-i18n="int.c3.t">Mietzinse & Zahlungsabgleich</h3><div class="int-chips"><span class="chip">ISO 20022 / camt</span><span class="chip">QR-Rechnung</span><span class="chip">eBanking</span></div></div>
+      <div class="card reveal"><span class="card-tag" data-i18n="int.c4.cat">ESG & Energie</span><h3 data-i18n="int.c4.t">CO₂, Energie & Nachhaltigkeit</h3><div class="int-chips"><span class="chip">GEAK</span><span class="chip">Minergie</span><span class="chip">SSREI</span><span class="chip">CO₂-Daten</span></div></div>
+      <div class="card reveal" data-d="1"><span class="card-tag" data-i18n="int.c5.cat">Dokumente & Kommunikation</span><h3 data-i18n="int.c5.t">Belege, Verträge & Portale</h3><div class="int-chips"><span class="chip">Casavi</span><span class="chip">SharePoint / DMS</span><span class="chip">E-Mail-Import</span></div></div>
+      <div class="card reveal" data-d="2"><span class="card-tag" data-i18n="int.c6.cat">Reporting & Konsolidierung</span><h3 data-i18n="int.c6.t">Export in Ihre Vermögensrechnung</h3><div class="int-chips"><span class="chip">KGAST-Reporting</span><span class="chip">PDF / Excel</span><span class="chip">API</span></div></div>
+    </div>
+    <p style="text-align:center;margin-top:26px;font-family:var(--mono);font-size:.8rem;color:var(--ink-3)" class="reveal" data-i18n="int.note">Kein passendes System dabei? Wir binden weitere Quellen per API oder Import an.</p>
+  </div>
+</section>
+
+<!-- WARUM JETZT -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="why.eyebrow">Warum jetzt</span>
+      <h2 class="sec-title">Der regulatorische <em>Rückenwind ist da.</em></h2>
+    </div>
+    <div class="impact reveal">
+      <div class="impact-item"><div class="num" data-i18n="why.1.n">Pflicht</div><div class="lbl" data-i18n="why.1.l">AMAS-ESG-Kennzahlen in Jahresberichten seit 31.12.2024</div></div>
+      <div class="impact-item"><div class="num">Art. 51a</div><div class="lbl" data-i18n="why.2.l">BVG: nicht delegierbare Kontrollpflicht des Stiftungsrats</div></div>
+      <div class="impact-item"><div class="num"><span class="unit">−</span>30%</div><div class="lbl" data-i18n="why.3.l">THG bis 2030 als Zwischenschritt Richtung Net-Zero 2050</div></div>
+      <div class="impact-item"><div class="num" data-i18n="why.4.n">Kriterium</div><div class="lbl" data-i18n="why.4.l">Digitale Zusammenarbeit als Mandatsvoraussetzung</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="section gridbg" id="ablauf">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="onb.eyebrow">Der Ablauf</span>
+      <h2 class="sec-title">In rund <em>2 Monaten</em> zum Live-Portfolio</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-step reveal"><div class="tl-num">1</div><div class="tl-day" data-i18n="onb.d1">Woche 1–2</div><h3 data-i18n="onb.s1.t">Portfolio-Analyse</h3><p data-i18n="onb.s1.p">Wir erfassen Objekte, Verträge und Kennzahlen und prüfen das Optimierungspotenzial.</p></div>
+      <div class="tl-step reveal" data-d="1"><div class="tl-num">2</div><div class="tl-day" data-i18n="onb.d2">Woche 2–5</div><h3 data-i18n="onb.s2.t">Digitalisierung</h3><p data-i18n="onb.s2.p">Ihre Daten wandern strukturiert ins Cockpit — inkl. Dokumente und Historie.</p></div>
+      <div class="tl-step reveal" data-d="2"><div class="tl-num">3</div><div class="tl-day" data-i18n="onb.d3">Woche 5–7</div><h3 data-i18n="onb.s3.t">Live-Zugang</h3><p data-i18n="onb.s3.p">Ihre Gremien erhalten rollenbasierten Zugang mit Live-Kennzahlen und Videos.</p></div>
+      <div class="tl-step reveal" data-d="3"><div class="tl-num">4</div><div class="tl-day" data-i18n="onb.d4">Ab Woche 8</div><h3 data-i18n="onb.s4.t">Laufende Betreuung</h3><p data-i18n="onb.s4.p">Das Kompetenzzentrum bewirtschaftet, dokumentiert per Video und optimiert fortlaufend.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NETZWERK + BEISPIEL -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="net.eyebrow">Regionale Präsenz</span>
+      <h2 class="sec-title">Ein Netzwerk, das <em>vor Ort ist</em> — in der ganzen Schweiz</h2>
+      <p class="sec-lead" data-i18n="net.lead">Proptiva ist Teil des Heimyo-Netzwerks. Regionale Partner sichern Präsenz vor Ort — die Grundlage dafür, dass wir jede Liegenschaft persönlich begehen und filmen.</p>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+      <a class="partner reveal" href="https://www.muellerspecht.ch/" target="_blank" rel="noopener"><span class="partner-logo"><img src="assets/logos/muellerspecht.svg" alt="Müller & Specht Immobilien" loading="lazy" /></span><span class="card-tag" data-i18n="net.p1.r">Schaffhausen</span></a>
+      <a class="partner reveal" data-d="1" href="https://marbetimmobilien.ch/" target="_blank" rel="noopener"><span class="partner-logo"><span class="partner-wordmark">Marbet<em> Immobilien</em></span></span><span class="card-tag" data-i18n="net.p2.r">Luzern & Zentralschweiz</span></a>
+      <a class="partner reveal" data-d="2" href="https://bodag.ch/" target="_blank" rel="noopener"><span class="partner-logo"><img src="assets/logos/bodag.svg" alt="Bodag Immobilien" loading="lazy" /></span><span class="card-tag" data-i18n="net.p3.r">Winterthur & Zürich</span></a>
+      <a class="partner reveal" data-d="3" href="https://www.marthaler-immobilien.ch/" target="_blank" rel="noopener"><span class="partner-logo"><img src="assets/logos/marthaler.svg" alt="Marthaler Immobilien" loading="lazy" /></span><span class="card-tag" data-i18n="net.p4.r">Thurgau & St. Gallen</span></a>
+    </div>
+
+    <div class="example reveal" style="margin-top:40px">
+      <div class="ex-media"><img src="assets/img/beispiel-objekt.jpg" alt="Wohn- und Geschäftshaus im Seefeld, Zürich" loading="lazy" /><div class="video-caption"><span class="loc">📍 Seefeldstrasse 12 · 8008 Zürich</span></div></div>
+      <div class="ex-body">
         <span class="eyebrow" data-i18n="ex.eyebrow">Beispielobjekt</span>
-        <h2 class="h2" data-i18n="ex.title">Eine Zürcher Liegenschaft im Cockpit</h2>
-      </div>
-      <div class="example" data-reveal>
-        <div class="ex-media">
-          <img class="ex-img" src="assets/img/beispiel-objekt.jpg" alt="Wohn- und Geschäftshaus im Seefeld, Zürich" loading="lazy" />
-          <div class="video-caption"><span class="loc">📍 Seefeldstrasse 12 · 8008 Zürich</span></div>
+        <h3 style="margin-top:12px" data-i18n="ex.name">Wohn- und Geschäftshaus Seefeld</h3>
+        <div class="ex-addr" data-i18n="ex.addr">Baujahr 1978 · Sanierung 2021</div>
+        <div class="ex-kpis">
+          <div class="ex-kpi"><div class="k" data-i18n="ex.k1">Verkehrswert</div><div class="v">CHF 84.2 Mio</div></div>
+          <div class="ex-kpi"><div class="k" data-i18n="ex.k2">Netto-Rendite</div><div class="v" style="color:var(--pos)">4.1%</div></div>
+          <div class="ex-kpi"><div class="k" data-i18n="ex.k3">Vermietung</div><div class="v">99.1%</div></div>
+          <div class="ex-kpi"><div class="k" data-i18n="ex.k4">Letzte Begehung</div><div class="v">28.06.2026</div></div>
         </div>
-        <div class="ex-body">
-          <h3 data-i18n="ex.name">Wohn- und Geschäftshaus Seefeld</h3>
-          <div class="ex-addr" data-i18n="ex.addr">Seefeldstrasse 12 · 8008 Zürich · Baujahr 1978, Sanierung 2021</div>
-          <div class="ex-kpis">
-            <div class="ex-kpi"><div class="k" data-i18n="ex.k1">Verkehrswert</div><div class="v">CHF 84.2 Mio</div></div>
-            <div class="ex-kpi"><div class="k" data-i18n="ex.k2">Netto-Rendite</div><div class="v" style="color:var(--pos)">4.1%</div></div>
-            <div class="ex-kpi"><div class="k" data-i18n="ex.k3">Vermietung</div><div class="v">99.1%</div></div>
-            <div class="ex-kpi"><div class="k" data-i18n="ex.k4">Letzte Begehung</div><div class="v">28.06.2026</div></div>
-          </div>
-          <a href="portfolio-demo.html" class="btn btn-dark" data-i18n="ex.cta">Im Portfolio-Manager ansehen</a>
-        </div>
+        <a href="portfolio-demo.html" class="btn btn-ghost" data-cursor data-i18n="ex.cta">Im Portfolio-Manager ansehen</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== ONBOARDING TIMELINE ===== -->
-  <section class="section-pad section-alt" id="onboarding">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="onb.eyebrow">Der Ablauf</span>
-        <h2 class="h2" data-i18n="onb.title">In rund 2 Monaten zum Live-Portfolio</h2>
-      </div>
-      <div class="timeline">
-        <div class="tl-step" data-reveal><div class="tl-dot"></div><div class="tl-day" data-i18n="onb.d1">Woche 1–2</div><h3 data-i18n="onb.s1.t">Portfolio-Analyse</h3><p data-i18n="onb.s1.p">Wir erfassen Objekte, Verträge und Kennzahlen und prüfen das Optimierungspotenzial.</p></div>
-        <div class="tl-step" data-reveal data-reveal-delay="1"><div class="tl-dot"></div><div class="tl-day" data-i18n="onb.d2">Woche 2–5</div><h3 data-i18n="onb.s2.t">Digitalisierung</h3><p data-i18n="onb.s2.p">Ihre Daten wandern strukturiert in den Portfolio-Manager — inkl. Dokumente und Historie.</p></div>
-        <div class="tl-step" data-reveal data-reveal-delay="2"><div class="tl-dot"></div><div class="tl-day" data-i18n="onb.d3">Woche 5–7</div><h3 data-i18n="onb.s3.t">Live-Zugang</h3><p data-i18n="onb.s3.p">Ihre Gremien erhalten rollenbasierten Zugang zum Cockpit mit Live-Kennzahlen und Videos.</p></div>
-        <div class="tl-step" data-reveal data-reveal-delay="3"><div class="tl-dot"></div><div class="tl-day" data-i18n="onb.d4">Ab Woche 8</div><h3 data-i18n="onb.s4.t">Laufende Betreuung</h3><p data-i18n="onb.s4.p">Das Kompetenzzentrum bewirtschaftet, dokumentiert per Video und optimiert fortlaufend.</p></div>
-      </div>
+<!-- STANDARDS -->
+<section class="section gridbg">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" data-i18n="std.eyebrow">Standards & Sicherheit</span>
+      <h2 class="sec-title" style="font-size:clamp(1.7rem,3vw,2.4rem)" data-i18n="std.title">Anschlussfähig an die Standards, die Ihre Gremien prüfen</h2>
     </div>
-  </section>
-
-  <!-- ===== REGIONAL NETWORK (real Heimyo partners) ===== -->
-  <section class="section-pad">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="net.eyebrow">Regionale Präsenz</span>
-        <h2 class="h2" data-i18n="net.title">Ein Netzwerk, das vor Ort ist — in der ganzen Schweiz</h2>
-        <p class="lead" style="margin-inline:auto" data-i18n="net.lead">Proptiva ist Teil des Heimyo-Netzwerks. Regionale Partner sichern Präsenz vor Ort — die Grundlage dafür, dass wir jede Liegenschaft persönlich begehen und filmen können.</p>
-      </div>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
-        <a class="partner" href="https://www.muellerspecht.ch/" target="_blank" rel="noopener" data-reveal>
-          <span class="partner-logo"><img src="assets/logos/muellerspecht.svg" alt="Müller &amp; Specht Immobilien" loading="lazy" /></span>
-          <span class="card-tag" data-i18n="net.p1.r">Schaffhausen</span>
-        </a>
-        <a class="partner" href="https://marbetimmobilien.ch/" target="_blank" rel="noopener" data-reveal data-reveal-delay="1">
-          <span class="partner-logo"><span class="partner-wordmark">Marbet<em>Immobilien</em></span></span>
-          <span class="card-tag" data-i18n="net.p2.r">Luzern &amp; Zentralschweiz</span>
-        </a>
-        <a class="partner" href="https://bodag.ch/" target="_blank" rel="noopener" data-reveal data-reveal-delay="2">
-          <span class="partner-logo"><img src="assets/logos/bodag.svg" alt="Bodag Immobilien" loading="lazy" /></span>
-          <span class="card-tag" data-i18n="net.p3.r">Winterthur &amp; Zürich</span>
-        </a>
-        <a class="partner" href="https://www.marthaler-immobilien.ch/" target="_blank" rel="noopener" data-reveal data-reveal-delay="3">
-          <span class="partner-logo"><img src="assets/logos/marthaler.svg" alt="Marthaler Immobilien" loading="lazy" /></span>
-          <span class="card-tag" data-i18n="net.p4.r">Thurgau &amp; St. Gallen</span>
-        </a>
-      </div>
-      <p class="muted" style="text-align:center;margin-top:30px;font-size:0.9rem" data-i18n="net.ref">Kundenreferenzen besprechen wir gern im persönlichen Gespräch.</p>
+    <div class="badges reveal">
+      <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span><span>ISO 27001<small data-i18n="std.b1">Informationssicherheit (angestrebt)</small></span></div>
+      <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span><span>TER_ISA / TER_REF<small data-i18n="std.b2">Kostentransparenz-konform</small></span></div>
+      <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></span><span>AMAS-Kennzahlen<small data-i18n="std.b3">ESG-Reporting</small></span></div>
+      <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22l10-18 10 18z"/><path d="M12 9v5"/></svg></span><span>SSREI / GRESB<small data-i18n="std.b4">anschlussfähig</small></span></div>
+      <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span data-i18n="std.b5">Swiss Hosting</span></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== TRUST BADGES ===== -->
-  <section class="section-pad-sm section-alt">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <span class="eyebrow" data-i18n="std.eyebrow">Standards & Sicherheit</span>
-        <h2 class="h3" style="font-family:var(--sans);font-weight:700" data-i18n="std.title">Anschlussfähig an die Standards, die Ihre Gremien prüfen</h2>
+<!-- CTA -->
+<section class="section cta-band gridbg" id="contact">
+  <div class="aurora"></div>
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="cta.eyebrow">Unverbindlich starten</span>
+        <h2 class="sec-title" style="margin-top:18px">Sehen Sie Proptiva an <em>Ihrem eigenen Portfolio.</em></h2>
+        <p class="sec-lead" data-i18n="cta.lead">Eine persönliche Demo, 30 Minuten. Wir zeigen den Portfolio-Manager an einer Beispiel-Liegenschaft und besprechen, wie ein Onboarding für Ihr Vehikel aussieht.</p>
+        <div style="margin-top:24px"><a href="portfolio-demo.html" class="btn btn-ghost" data-cursor data-i18n="cta.demo">Erst die Demo ansehen</a></div>
       </div>
-      <div class="badges" data-reveal>
-        <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></span><span>ISO 27001<small data-i18n="std.b1">Informationssicherheit (angestrebt)</small></span></div>
-        <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span><span>TER_ISA / TER_REF<small data-i18n="std.b2">Kostentransparenz-konform</small></span></div>
-        <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.4 1 6.7L12 17l-5.5 3 1-6.7L3 8.9 9 8z"/></svg></span><span>AMAS-Kennzahlen<small data-i18n="std.b3">ESG-Reporting</small></span></div>
-        <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22l10-18 10 18z"/><path d="M12 9v5"/></svg></span><span>SSREI / GRESB<small data-i18n="std.b4">anschlussfähig</small></span></div>
-        <div class="badge-pill"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span><span data-i18n="std.b5">Swiss Hosting</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CTA / CONTACT (dark) ===== -->
-  <section class="section-pad cta-band" id="contact">
-    <div class="wrap">
-      <div class="cta-grid">
-        <div>
-          <span class="eyebrow" data-i18n="cta.eyebrow">Unverbindlich starten</span>
-          <h2 class="h2" style="margin:14px 0 16px" data-i18n="cta.title">Sehen Sie Proptiva an Ihrem eigenen Portfolio</h2>
-          <p class="lead" data-i18n="cta.lead">
-            Vereinbaren Sie eine persönliche Demo. Wir zeigen Ihnen den Portfolio-Manager anhand einer
-            Beispiel-Liegenschaft und besprechen, wie ein Onboarding für Ihr Vehikel aussieht.
-          </p>
-          <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap">
-            <a href="portfolio-demo.html" class="btn btn-ghost" data-i18n="cta.demo">Erst die Demo ansehen</a>
-          </div>
-        </div>
-        <form class="form-card" id="contactForm">
+      <form class="form-card reveal" data-d="1" id="contactForm">
+        <div class="form-body" id="formBody">
           <div class="form-row">
-            <div class="form-field"><label for="f-name" data-i18n="cta.f.name">Name</label><input id="f-name" type="text" required data-i18n-ph="cta.f.name.ph" placeholder="Vor- und Nachname" /></div>
-            <div class="form-field"><label for="f-org" data-i18n="cta.f.org">Institution</label><input id="f-org" type="text" required data-i18n-ph="cta.f.org.ph" placeholder="Pensionskasse / Stiftung" /></div>
+            <div class="form-field"><label for="f-name" data-i18n="cta.f.name">Name</label><input id="f-name" name="Name" type="text" required placeholder="Vor- und Nachname" /></div>
+            <div class="form-field"><label for="f-org" data-i18n="cta.f.org">Institution</label><input id="f-org" name="Institution" type="text" required placeholder="Pensionskasse / Stiftung" /></div>
           </div>
           <div class="form-row">
-            <div class="form-field"><label for="f-mail" data-i18n="cta.f.email">E-Mail</label><input id="f-mail" type="email" required placeholder="name@institution.ch" /></div>
-            <div class="form-field"><label for="f-vol" data-i18n="cta.f.vol">Portfoliovolumen</label>
-              <select id="f-vol">
-                <option data-i18n="cta.f.vol.1">unter CHF 100 Mio</option>
-                <option data-i18n="cta.f.vol.2">CHF 100–500 Mio</option>
-                <option data-i18n="cta.f.vol.3">CHF 500 Mio – 1 Mrd</option>
-                <option data-i18n="cta.f.vol.4">über CHF 1 Mrd</option>
-              </select>
-            </div>
+            <div class="form-field"><label for="f-mail" data-i18n="cta.f.email">E-Mail</label><input id="f-mail" name="E-Mail" type="email" required placeholder="name@institution.ch" /></div>
+            <div class="form-field"><label for="f-vol" data-i18n="cta.f.vol">Portfoliovolumen</label><select id="f-vol" name="Portfoliovolumen"><option>unter CHF 100 Mio</option><option>CHF 100–500 Mio</option><option>CHF 500 Mio – 1 Mrd</option><option>über CHF 1 Mrd</option></select></div>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center" data-i18n="cta.f.submit">Demo anfragen</button>
-          <p class="form-note" id="formNote" data-i18n="cta.f.note">Wir melden uns innerhalb von 24 Stunden. Ihre Daten werden vertraulich behandelt.</p>
-        </form>
-      </div>
+          <button type="submit" class="btn btn-gold magnetic" style="width:100%;justify-content:center" data-cursor data-i18n="cta.f.submit">Demo anfragen</button>
+          <p class="form-note" data-i18n="cta.f.note">Antwort innerhalb 24 h · vertraulich · Swiss Hosting</p>
+        </div>
+        <div class="form-ok" id="formOk"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div><div style="font-family:var(--serif);font-size:1.4rem" data-i18n="cta.ok.t">Anfrage erhalten.</div><p style="color:var(--ink-2);margin-top:8px;font-size:.95rem" data-i18n="cta.ok.p">Wir melden uns innerhalb von 24 Stunden.</p></div>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== FOOTER (dark) ===== -->
-  <footer class="footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="brand" href="#top"><span class="mark"><svg class="logo-glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/><rect x="17.5" y="20.5" width="4.2" height="4.2" rx="0.8" fill="#1a1400" opacity="0.45"/></svg></span><span>Proptiva<small data-i18n="brand.sub">by Heimyo · Zürich</small></span></a>
-          <p data-i18n="foot.about">Digitales Immobilien-Portfoliomanagement für Schweizer Pensionskassen und institutionelle Investoren. Ein Angebot der Heimyo Holding AG.</p>
-        </div>
-        <div>
-          <h5 data-i18n="foot.product">Plattform</h5>
-          <a href="portfolio-demo.html" data-i18n="foot.demo">Portfolio-Manager Demo</a>
-          <a href="#capabilities" data-i18n="nav.capabilities">Leistungen</a>
-          <a href="#system" data-i18n="nav.system">System</a>
-        </div>
-        <div>
-          <h5 data-i18n="foot.company">Unternehmen</h5>
-          <a href="#onboarding" data-i18n="nav.onboarding">Ablauf</a>
-          <a href="#platform" data-i18n="nav.platform">Portfolio-Manager</a>
-          <a href="https://www.heimyo.com/privacy-policy" target="_blank" rel="noopener" data-i18n="foot.imprint">Impressum</a>
-          <a href="https://www.heimyo.com/datenschutz" target="_blank" rel="noopener" data-i18n="foot.privacy">Datenschutzerklärung</a>
-        </div>
-        <div>
-          <h5 data-i18n="foot.contact">Kontakt</h5>
-          <a href="#contact" data-i18n="cta.eyebrow">Demo anfragen</a>
-          <a href="mailto:info@heimyo.com">info@heimyo.com</a>
-        </div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top"><span class="glyph"><svg width="18" height="18" viewBox="0 0 32 32" fill="none"><rect x="8.5" y="6" width="4.2" height="20" rx="1.2" fill="#1a1400"/><path d="M12.7 6H19a5.5 5.5 0 0 1 0 11h-6.3" stroke="#1a1400" stroke-width="4.2" stroke-linejoin="round"/></svg></span><span>Proptiva<small data-i18n="brand.sub">by Heimyo · Zürich</small></span></a>
+        <p data-i18n="foot.about">Digitales Immobilien-Portfoliomanagement für Schweizer Pensionskassen und institutionelle Investoren. Ein Angebot der Heimyo Holding AG.</p>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 Heimyo Holding AG · Proptiva · Zürich</span>
-        <span><a href="https://www.heimyo.com/privacy-policy" target="_blank" rel="noopener" data-i18n="foot.imprint">Impressum</a> · <a href="https://www.heimyo.com/datenschutz" target="_blank" rel="noopener" data-i18n="foot.privacy">Datenschutzerklärung</a></span>
-      </div>
+      <div><h5 data-i18n="foot.product">Plattform</h5><a href="#cockpit" data-i18n="nav.platform">Portfolio-Cockpit</a><a href="portfolio-demo.html" data-i18n="foot.demo">Interaktive Demo</a><a href="#leistungen" data-i18n="nav.capabilities">Leistungen</a></div>
+      <div><h5 data-i18n="foot.company">Unternehmen</h5><a href="#ablauf" data-i18n="nav.onboarding">Ablauf</a><a href="#vergleich" data-i18n="nav.compare">Vergleich</a><a href="https://www.heimyo.com/privacy-policy" target="_blank" rel="noopener" data-i18n="foot.imprint">Impressum</a><a href="https://www.heimyo.com/datenschutz" target="_blank" rel="noopener" data-i18n="foot.privacy">Datenschutz</a></div>
+      <div><h5 data-i18n="foot.contact">Kontakt</h5><a href="#contact" data-i18n="cta.eyebrow">Demo anfragen</a><a href="mailto:info@heimyo.com">info@heimyo.com</a></div>
     </div>
-  </footer>
+    <div class="footer-bottom"><span>© 2026 Heimyo Holding AG · Proptiva · Zürich</span><span><a href="https://www.heimyo.com/privacy-policy" target="_blank" rel="noopener" data-i18n="foot.imprint">Impressum</a> · <a href="https://www.heimyo.com/datenschutz" target="_blank" rel="noopener" data-i18n="foot.privacy">Datenschutz</a></span></div>
+  </div>
+</footer>
 
-  <script src="assets/js/main.js?v=5"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/app.js?v=1"></script>
 </body>
 </html>
